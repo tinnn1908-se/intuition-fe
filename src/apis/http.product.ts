@@ -2,8 +2,6 @@
 import request, { AxiosRequestConfig } from 'axios'
 import { IFilter } from '../models/filter.model';
 import { IProduct } from '../models/product.model';
-import { ISearchProductRequest } from '../models/requests.model';
-import AuthService from '../services/auth.service'
 import httpCommon from './http.common';
 export default class ProductAPI {
     static async getNewestProducts() {
