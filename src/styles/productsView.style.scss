@@ -1,0 +1,31 @@
+.productView {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .__title {
+        display: flex;
+        margin-top: 100px;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+            letter-spacing: 0.08rem;
+            line-height: 32px;
+        }
+
+        >button {
+            height: 36px;
+            >svg {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+            margin-bottom: 4px;
+            margin-left: 40px;
+            border: 1px solid #393D46;
+        }
+    }
+}

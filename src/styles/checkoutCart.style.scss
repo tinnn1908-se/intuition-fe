@@ -1,0 +1,189 @@
+.checkoutCart {
+    width: 90%;
+    margin: 5%;
+
+    .__yourCart {
+        display: flex;
+        background-color: #ace8bc;
+        width: 100%;
+        height: 50px;
+        padding-left: 35%;
+        padding-right: 35%;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        text-align: center;
+        align-content: center;
+        justify-content: center;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+        p{
+            line-height: 50px;
+            flex: 1;
+            font-weight: bold;
+            letter-spacing: 0.1rem;
+        }
+        >p:last-child{
+            margin: 10px 25px 10px 0;
+            line-height: 30px;
+            background-color: white;
+            border-radius: 5px;
+        }
+    }
+
+    .__content {
+        display: flex;
+
+        >.list-group {
+            width: 50%;
+
+            >.list-group-item {
+                min-height: 120px;
+                margin-bottom: 20px;
+                border: 1px solid #393d46;
+                display: flex;
+                border-radius: 5px;
+
+                >img {
+                    width: 30%;
+                    height: 220px;
+                    object-fit: contain;
+                    margin-right: 5%;
+                    background-color: transparent;
+                }
+
+                .__content {
+                    display: flex;
+                    width: 65%;
+                    flex-direction: column;
+
+                    .__top {
+                        display: flex;
+                        flex: 1;
+                        align-items: center;
+
+                        >a {
+                            color: #393d46;
+                            font-size: 36px;
+                            width: 95%;
+                            text-decoration: none;
+                            display: flex;
+                            flex-wrap: wrap;
+                        }
+
+                        >svg {
+                            width: 36px;
+                            height: 36px;
+                            cursor: pointer;
+                        }
+
+                        button {
+                            border: none;
+                            background-color: transparent;
+                        }
+                    }
+
+                    .__bottom {
+                        flex: 1;
+                        display: flex;
+                        margin-top: 50px;
+                        font-size: 18px;
+                        font-weight: bold;
+
+                        ._qty {
+                            width: 15%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            padding-bottom: 6.75%;
+
+                            input {
+                                width: 90%;
+                                border: none;
+                                text-align: center;
+                                outline: none;
+                                font-weight: bold;
+                            }
+
+                            svg {
+                                cursor: pointer;
+                            }
+
+                            button {
+                                border: none;
+                                background-color: transparent;
+                            }
+                        }
+
+                        .__size {
+                            width: 20%;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-bottom: 0.5%;
+                        }
+
+                        .__color {
+                            width: 8%;
+                            margin-left: 8%;
+                            height: 16px;
+                            margin-top: 13%;
+                            border-radius: 50px;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                        }
+
+                        .__price {
+                            width: 35%;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-bottom: 0.5%;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .__text {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin-left: 5%;
+
+            .__voucher {
+                display: flex;
+                width: 100%;
+
+                >p {
+                    min-width: 35%;
+                    line-height: 40px;
+                    font-size: 20px;
+                }
+
+                >input {
+                    width: 65%;
+                    height: 40px;
+                    padding-left: 5%;
+                    font-style: italic;
+                    color: #6c7a70;
+                    font-size: 20px;
+                }
+            }
+            .__singleText {
+                display: flex;
+                >p {
+                    line-height: 40px;
+                    font-size: 20px;
+                    min-width: 35%;
+                }
+            }
+        }
+    }
+}
