@@ -31,7 +31,6 @@ const reducer = combineReducers({
 })
 
 const persistedReducer = persistReducer(persistConfig,reducer);
-
 export const store = configureStore({
     // reducer: {
     //     canvas: canvasSlice.reducer,
@@ -42,7 +41,10 @@ export const store = configureStore({
     //     auth: authSlice.reducer,
     //     user: userSlice.reducer
     // }
-    reducer : persistedReducer
+    reducer : persistedReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck : false
+    }),
 })
 
 export type AppDispatch = typeof store.dispatch;
