@@ -1,0 +1,26 @@
+.css-8atqhb{
+    width: 80% !important;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root{
+        color: #278c5d !important;
+    }
+    .__congrat{
+        display: flex;
+        margin-top: 50px;
+        flex-direction: column;
+        width: 50%;
+        margin-left: 25%;
+        text-align: center;
+        justify-content: space-between;
+        height: 150px;
+        >h2{
+            color: #278c5d;
+            letter-spacing: 0.1rem;
+        }
+        >small{
+            font-style: italic;
+            letter-spacing: 0.1rem;
+        }
+    }
+}

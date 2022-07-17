@@ -1,0 +1,22 @@
+.categories{
+    display: flex;
+    flex-direction: column;
+    width: 84.5%;
+    margin: 0 7.75%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    h1{
+        font-size: 48px;
+        letter-spacing: 0.1rem;
+    }
+    >.__item{
+        margin-top: 30px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: white;
+    }
+}

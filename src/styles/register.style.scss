@@ -1,0 +1,51 @@
+.register{
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    background-color: #434d45;
+    form{
+        width: 50%;
+        margin: 0 25% 0 25%;
+        padding: 2% 0;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .__header{
+            display: flex;
+        }
+        small{
+            margin-bottom: 30px;
+        }
+        .mb-3{
+            display: flex;
+            width: 100%;
+            padding:  0 10%;
+            justify-content: space-between;
+            .form-label{
+                width: 30%;
+            }
+            #datePicker{
+                padding: 1% 1.5%;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+            }
+            >select{
+                margin-left: 1%;
+            }
+        }
+        >select{
+            width: 61.5%;
+            margin-left: 18.5%;
+            margin-bottom: 2.5%;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            border-radius: 5px;
+        }
+    }
+}

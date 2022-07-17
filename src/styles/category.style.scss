@@ -1,0 +1,32 @@
+.category{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    margin: 0 1.5%;
+    padding-top: 2%;
+    text-align: center;
+    align-items: center;
+    height: 150px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    svg{
+        width: 80px;
+        height: 80px;
+        background-color: transparent;
+    }
+    p{
+        padding-top: 20px;
+        font-size: 18px;
+        background-color: transparent;
+    }
+    svg,p{
+        color: gray;
+    }
+    &:hover{
+        background-color: #393D46;
+        svg,p{
+            color: ivory;
+        }
+    }
+}
