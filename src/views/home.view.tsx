@@ -3,6 +3,7 @@ import Header from '../components/header.component'
 import '../styles/home.style.scss'
 import { IProduct } from '../models/product.model';
 import ProductService from '../services/product.service';
+import Banner from '../components/banner.component';
 
 
 const HomeView = () => {
@@ -20,7 +21,8 @@ const HomeView = () => {
 
   return (
     <div className='home'>
-      <Header/>
+      <Header />
+      <Banner />
       {/* <Banner/>
       <Categories/>
       <Products title={APPLICATION.PRODUCT_TITLE_PRODUCTS} products={products}/>
