@@ -18,7 +18,7 @@ export default class AuthAPI {
 
     static async authenticate(signInInformation : ISignin){
         try {
-            var response = await HTTP.post("http://localhost:8080/api/auth/authentication",signInInformation);
+            var response = await HTTP.post("/api/auth/authentication",signInInformation);
             return response.data;
         } catch (error) {
             if(request.isAxiosError(error) && error.response){
@@ -29,7 +29,7 @@ export default class AuthAPI {
 
     static async getUserByToken(tokens : ITokens){ 
         try{
-            var response = await HTTP.post('http://localhost:8080/api/auth/authorization',{
+            var response = await HTTP.post('/api/auth/authorization',{
                 accessToken : tokens.accessToken,
                 // accessToken : tokens.accessToken,
                 refreshToken : tokens.refreshToken

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 import HomeView from './views/home.view';
+import LoginView from './views/login.view';
+import ProductsView from './views/products.view';
+import RegisterView from './views/register.view';
 function App() {
   return (
     <div style={{
@@ -14,13 +17,14 @@ function App() {
       boxSizing: 'border-box'
     }} className='app'>
       <Routes>
-        {/* <Route path='/register' element={<RegisterView/>}  />
-            <Route path='/login' element={<LoginView/>}  />
+        {/*
             <Route path='/' element={<HomeView/>} />
             <Route path='/ProductDetail/:productID' element={<ProductDetailView/>}/>
-            <Route path='/checkout' element={<CheckoutView/>} ></Route>
-            <Route path='/productview' element={<ProductsView/>} ></Route> */}
+            <Route path='/checkout' element={<CheckoutView/>} ></Route>*/}
         <Route path='/' element={<HomeView />} />
+        <Route path='/register' element={<RegisterView />} />
+        <Route path='/login' element={<LoginView />} />
+        <Route path='/productview' element={<ProductsView />} ></Route>
       </Routes>
     </div>
   );
