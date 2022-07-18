@@ -7,6 +7,9 @@ import Banner from '../components/banner.component';
 import Categories from '../components/categories.component';
 import { APPLICATION } from '../Constants/application.constant';
 import Products from '../components/products.component';
+import Trend from '../components/trend.component';
+import Discount from '../components/discount.component';
+import Footer from '../components/footer.component';
 
 
 const HomeView = () => {
@@ -28,12 +31,9 @@ const HomeView = () => {
       <Banner />
       <Categories />
       <Products title={APPLICATION.PRODUCT_TITLE_PRODUCTS} products={products} />
-      {/*
-      
-      <Products title={APPLICATION.PRODUCT_TITLE_PRODUCTS} products={products}/>
-      <Trend/>
-      <Discount/>
-      <Footer/> */}
+      <Trend />
+      <Discount />
+      <Footer />
     </div>
   )
 }
