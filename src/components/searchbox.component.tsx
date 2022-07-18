@@ -122,7 +122,7 @@ const SearchBox = () => {
                                 <Link onClick={onClickHandler} to={`/ProductDetail/${product.no}`} >{product.name}</Link>
                                 <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
                                 <div className='__bottom' >
-                                    <small>{CurrencyUtil.toVND(Number(product.price) + (Number(product.price) * 0.2) )}</small>
+                                    <small>{CurrencyUtil.toVND(Number(product.price) + (Number(product.price) * 0.2))}</small>
                                     <small>{CurrencyUtil.toVND(Number(product.price))}</small>
                                 </div>
                             </div>
