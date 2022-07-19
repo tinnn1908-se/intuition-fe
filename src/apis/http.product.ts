@@ -25,7 +25,7 @@ export default class ProductAPI {
             var url = '/api/product/getProductsByLikeName'
                 + `/${searchValue}`
                 + `/${page}`
-
+            console.log("Page : " + page)
             var response = await httpCommon.get(url);
             var products: Array<IProduct> = [];
             if (response && response.data) {
@@ -60,7 +60,7 @@ export default class ProductAPI {
         try {
             var url = "/api/product/getProductsByFilter";
             console.log(filter);
-            var response = await httpCommon.post(url,filter);
+            var response = await httpCommon.post(url, filter);
             var products: Array<IProduct> | null = null;
             if (response && response.data)
                 products = response.data.products;

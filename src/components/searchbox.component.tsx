@@ -91,7 +91,7 @@ const SearchBox = () => {
     //         sizes: ['S', 'M', 'L', 'XL', 'XXL']
     //     }
 
-    // ]
+    // ] 
 
     async function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
         var data: Array<IProduct> = await ProductService.getProductsByLikeName(event.currentTarget.value, 1);
