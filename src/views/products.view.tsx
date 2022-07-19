@@ -29,6 +29,9 @@ const ProductsView = () => {
         }
         fetchData();
     }, [])
+    useEffect(() => {
+        setCurrProducts(products)
+    }, [products])
 
 
 
