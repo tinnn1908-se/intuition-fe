@@ -94,7 +94,7 @@ const SearchBox = () => {
     // ]
 
     async function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-        var data: Array<IProduct> = await ProductService.getProductsByLikeName(event.currentTarget.value, 5);
+        var data: Array<IProduct> = await ProductService.getProductsByLikeName(event.currentTarget.value, 1);
         setProducts(data);
     }
 

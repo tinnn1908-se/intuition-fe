@@ -20,11 +20,11 @@ export default class ProductAPI {
         }
     }
 
-    static async getProductsByLikeName(searchValue: string, limit: number) {
+    static async getProductsByLikeName(searchValue: string, page: number) {
         try {
             var url = '/api/product/getProductsByLikeName'
                 + `/${searchValue}`
-                + `/${limit}`
+                + `/${page}`
 
             var response = await httpCommon.get(url);
             var products: Array<IProduct> = [];
