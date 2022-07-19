@@ -8,8 +8,8 @@ export default class ProductService {
         if (response) return response;
         return [];
     }
-    static async getProductsByLikeName(searchValue: string, limit: number) {
-        var response = await ProductAPI.getProductsByLikeName(searchValue, limit);
+    static async getProductsByLikeName(searchValue: string, page: number) {
+        var response = await ProductAPI.getProductsByLikeName(searchValue, page);
         if (response) return response;
         return [];
     }
