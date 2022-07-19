@@ -67,7 +67,7 @@ const ProductDetailView = () => {
         if (productID) {
             fetchProductByID(productID);
         }
-    }, [product])
+    }, [productID])
 
 
     function onSizeClickedHandler(event: React.MouseEvent) {
