@@ -5,10 +5,10 @@ export const productSlice = createSlice({
     name : 'products',
     initialState : initialProducts,
     reducers : {
-        loadProducts : (state,action : PayloadAction<Array<IProduct>>) => {
+        saveProducts : (state,action : PayloadAction<Array<IProduct>>) => {
             state.products = action.payload;
         }
     }
 })
 
-export const {loadProducts} = productSlice.actions
+export const {saveProducts} = productSlice.actions

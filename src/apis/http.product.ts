@@ -56,15 +56,15 @@ export default class ProductAPI {
         }
     }
 
-    static async getProductsByFilterReq(filter: IFilter) {
+    static async getProductsByFilterReq(filter: IFilter, pagination: number) {
         try {
             var url = "/api/product/getProductsByFilter";
-            console.log(filter);
-            var response = await httpCommon.post(url, filter);
+            // console.log(products)
+            var response = await httpCommon.post(url, { filter, pagination });
             var products: Array<IProduct> | null = null;
             if (response && response.data)
                 products = response.data.products;
-            console.log(products)
+            // console.log(products)
             return products;
         } catch (error) {
             if (request.isAxiosError(error) && error.message)

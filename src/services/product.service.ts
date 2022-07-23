@@ -18,8 +18,8 @@ export default class ProductService {
         if (response) return response;
         return null;
     }
-    static async getProductsByFilterReq(filter: IFilter) {
-        var response: Array<IProduct> | undefined | null = await ProductAPI.getProductsByFilterReq(filter);
+    static async getProductsByFilterReq(filter: IFilter,pagination : number) {
+        var response: Array<IProduct> | undefined | null = await ProductAPI.getProductsByFilterReq(filter,pagination);
         if (response) return response;
         return [];
     }

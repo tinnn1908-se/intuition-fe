@@ -12,24 +12,22 @@ import SingleFilter from './singleFilter.component';
 import FilterService from '../services/filter.service';
 import { IProduct } from '../models/product.model';
 import ProductService from '../services/product.service';
-import { loadProducts } from '../app/slices/products.slice';
+import { saveProducts } from '../app/slices/products.slice';
 const Filter = () => {
 
     const categories = ["Jacket", "T-Shirt", "Pant"];
     const colors = ["Đỏ tươi", "Xanh da trời nhạt", "Xanh dạ quang", "Tím nhạt", "Hống Phấn"]
-    //
     const sizes = ["S", "XS", "M", "L", "XL", "XXL"]
     const filter = useSelector(filterSelector);
     const { isFilterShown, isEnableScroll, placement } = useSelector(canvasSelector);
     const { products } = useSelector(productsSelector);
-
     const dispatch: AppDispatch = useDispatch();
     async function handleFilterClose() {
         // load data here
         dispatch(setMyFilterHidden())
-        var response: Array<IProduct> = await ProductService.getProductsByFilterReq(filter);
+        var response: Array<IProduct> = await ProductService.getProductsByFilterReq(filter, 1);
         if (response.length !== 0) {
-            dispatch(loadProducts(response));
+            dispatch(saveProducts(response));
         }
     }
     const [slideBarValue, setSlideBarValue] = useState<number[]>([0, 10000000]);
@@ -37,7 +35,6 @@ const Filter = () => {
     // function valuetext(value: number) {
     //     return `${value}VND`;
     // }
-
     useEffect(() => {
         console.log("uf : " + slideBarValue[0] + " - " + slideBarValue[1])
         if (slideBarValue[0] === 0) {
@@ -85,7 +82,6 @@ const Filter = () => {
             setSlideBarValue(newValue as number[]);
         }
     };
-
     function onPriceChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
         var currSelected = event.currentTarget.getAttribute('name');
         var newValues: number[] = [0, 10000000];
@@ -174,7 +170,6 @@ const Filter = () => {
             //log err
         }
     }
-
     return (
         <Offcanvas show={isFilterShown} onHide={handleFilterClose} placement='start' backdrop='false' scroll={isEnableScroll}>
             <Offcanvas.Header closeButton>

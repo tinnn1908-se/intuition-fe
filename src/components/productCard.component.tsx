@@ -4,13 +4,15 @@ import '../styles/product.card.style.scss'
 import { Link } from 'react-router-dom';
 import CurrencyUtil from '../utils/currency.util';
 
-const ProductCard = (product : IProduct) => {
-    function onClickHandler(event:React.MouseEvent){
+const ProductCard = (product: IProduct) => {
+    function onClickHandler(event: React.MouseEvent) {
         window.scrollTo({
             top: 250,
             behavior: 'smooth',
         });
     }
+
+    const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
     return (
         <div className="container page-wrapper">
@@ -25,8 +27,8 @@ const ProductCard = (product : IProduct) => {
                                     <span className="p-name">{product.name}</span>
                                     {/* <span className="p-company">Yeezy</span> */}
                                 </div>
-                                <div className="a-size">{"Available sizes : "}   
-                                {product.sizes.map(size => <span key={size} className="size">{` ${size}`}</span>)}
+                                <div className="a-size">{"Available sizes : "}
+                                    {sizes.map(size => <span key={size} className="size">{` ${size}`}</span>)}
                                 </div>
                                 {/* <div className="a-buttons"> 
                                 <button id='addToCartBtn' onClick={onClickHandler} ><AddShoppingCartIcon/></button>
