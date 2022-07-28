@@ -7,7 +7,7 @@ import { initialSignUp, ISignUp } from '../models/signup.model';
 import AddressService from '../services/address.service';
 import '../styles/register.style.scss'
 import Validator from '../utils/validator.util';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthService from '../services/auth.service';
 import DatetimeUtil from '../utils/datetime.util';
 import { DATETIMECONSTANTS } from '../Constants/datetime.constant';
@@ -22,14 +22,20 @@ const RegisterView = () => {
   const [districtCode, setDistrictCode] = useState(0);
   const [wardCode, setWardCode] = useState(0);
   const [signup, setSignup] = useState<ISignUp>(initialSignUp)
-  const [modal,setModal] = useState<IModal>({
-    title : 'Register Failed',
-    href : '/register',
-    isOpen : false,
-    message : 'Register Failed'
+  const [modal, setModal] = useState<IModal>({
+    title: 'Register Failed',
+    href: '/register',
+    isOpen: false,
+    message: 'Register Failed'
   })
-  const handleModalClose = () => setModal({...modal, isOpen : false});
+  const navigate = useNavigate();
 
+  function handleModalClose() {
+    setModal({ ...modal, isOpen: false });
+    navigate('/login', {
+      replace: false,
+    })
+  }
 
   useEffect(() => {
     async function fetchProvinces() {
@@ -89,14 +95,14 @@ const RegisterView = () => {
     event.preventDefault();
     var btnID = event.currentTarget.getAttribute('id')?.toString();
     console.log('onClick - processing')
-    setModal({...modal, isOpen : true});
+    setModal({ ...modal, isOpen: true });
     if (btnID === 'registerBtn') {
       if (Validator.isValidSelect(provinceCode)
         && Validator.isValidSelect(districtCode)
         && Validator.isValidSelect(wardCode)
         && startDate
       ) {
-        console.log('onClick - true')        
+        console.log('onClick - true')
         var pName: string = await AddressService.getProviceNameByCode(provinceCode);
         var dName: string = await AddressService.getDistrictNameByCode(districtCode);
         var wName: string = await AddressService.getWardNameByCode(wardCode);
@@ -115,9 +121,9 @@ const RegisterView = () => {
           setProvinceCode(0);
           setDistrictCode(0);
           setWardCode(0);
-          
-        } else if(response == false) {
-          
+
+        } else if (response == false) {
+
         }
       }
     }
@@ -336,21 +342,18 @@ const RegisterView = () => {
         <Button id='registerBtn' variant="primary" type="submit" onClick={onClick}>Sign Up</Button>
       </Form>
 
-      <Modal show={modal.isOpen} 
-        onHide={handleModalClose} 
+      <Modal show={modal.isOpen}
+        onHide={handleModalClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered>
         <Modal.Header closeButton>
-          <Modal.Title>{}</Modal.Title>
+          <Modal.Title>Inform</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Sign Up successfully !</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleModalClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleModalClose}>
-            Save Changes
+          <Button variant="success" onClick={handleModalClose}>
+            Ok
           </Button>
         </Modal.Footer>
       </Modal>
