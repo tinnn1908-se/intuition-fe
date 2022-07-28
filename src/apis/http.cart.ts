@@ -6,6 +6,7 @@ export default class CartAPI {
     static async createOrder(createOrderRequest: ICreateOrderRequest) {
         try {
             var response = await httpCommon.post('/api/order/createOrder', createOrderRequest);
+            console.log(createOrderRequest.phoneNumber)
             if (response && response.status === 200)
                 return true;
             return false;

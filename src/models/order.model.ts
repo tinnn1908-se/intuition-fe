@@ -45,3 +45,19 @@ export const initialOrder : IOrder = {
     phoneNumber : '',
     paymentMethod : 0
 }
+
+export interface IOrderResponse{
+    no : string, 
+    address : string,
+    quantity : string,
+    payment_method : number,
+    subtotal : string,
+    status: number,
+    insert_date : string
+}
+export interface IOrderDetailResponse{
+    name : string,
+    price : string,
+    quantity : number,
+    total : string
+}

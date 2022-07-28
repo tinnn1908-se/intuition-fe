@@ -7,14 +7,14 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import '../styles/horizontalLinearStepper.style.scss'
 import CheckoutCart from "./checkout.cart.component";
-import { addressSelector, AppDispatch, cartSelector, orderSelector } from "../app/store";
+import { addressSelector, AppDispatch, authSelector, cartSelector, orderSelector } from "../app/store";
 import { useSelector } from "react-redux";
 import CheckoutAddress from "./checkout.address.component";
 import CheckoutPayment from "./checkout.payment";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearCart } from '../app/slices/cart.slice';
-import { setAddress, setCart, setID } from "../app/slices/order.slice";
+import { setAddress, setCart, setFullname, setID, setPhoneNumber } from "../app/slices/order.slice";
 import { IAddress } from "../models/address.model";
 import { IOrder } from "../models/order.model";
 import CartService from "../services/cart.service";
@@ -23,6 +23,7 @@ import ApplicationUtil from "../utils/application.util";
 const HorizontalLinearStepper = () => {
   const cart = useSelector(cartSelector);
   const { addresses, selectingAddressID } = useSelector(addressSelector);
+  const {user} = useSelector(authSelector)
   const order = useSelector(orderSelector);
   const steps = [
     "Your Cart",
@@ -40,6 +41,10 @@ const HorizontalLinearStepper = () => {
       var orderID = ApplicationUtil.generateId();
       dispatch(setID(orderID));
       dispatch(setCart(cart));
+      if(user && user.phoneNumber && user.fullname){
+        dispatch(setPhoneNumber(user.phoneNumber));
+        dispatch(setFullname(user.fullname));
+      }
     }
     if (activeStep === 1) {
       // set Address
