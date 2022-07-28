@@ -45,6 +45,14 @@ const Header = () => {
         setOffset(window.pageYOffset)
         handleClose();
     };
+    function onNavigateHandler(event:React.MouseEvent) {
+        var id = event.currentTarget.getAttribute('id');
+        if(id === 'purchasedNav'){
+            navigate('/orderhistory')
+        }else{
+            navigate('/orderhistory')
+        }
+    }
     useEffect(() => {
         dispatch(setMyCartHidden());
         dispatch(setSearchBoxHidden());
@@ -126,10 +134,10 @@ const Header = () => {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem>
+                            <MenuItem id='profileNav' onClick={onNavigateHandler}>
                                 <Avatar /> Profile
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem id='purchasedNav' onClick={onNavigateHandler}>
                                 <Avatar /> Purchased List
                             </MenuItem>
                             <Divider />
