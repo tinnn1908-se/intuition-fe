@@ -12,6 +12,7 @@ import AuthService from '../services/auth.service';
 import DatetimeUtil from '../utils/datetime.util';
 import { DATETIMECONSTANTS } from '../Constants/datetime.constant';
 import { IModal } from '../models/modal.model';
+import { AxiosResponse } from 'axios';
 
 const RegisterView = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -22,6 +23,7 @@ const RegisterView = () => {
   const [districtCode, setDistrictCode] = useState(0);
   const [wardCode, setWardCode] = useState(0);
   const [signup, setSignup] = useState<ISignUp>(initialSignUp)
+  const [errors, setErros] = useState<Array<number>>([]);
   const [modal, setModal] = useState<IModal>({
     title: 'Register Failed',
     href: '/register',
@@ -32,9 +34,11 @@ const RegisterView = () => {
 
   function handleModalClose() {
     setModal({ ...modal, isOpen: false });
-    navigate('/login', {
-      replace: false,
-    })
+    if (errors.length === 0) {
+      navigate('/login', {
+        replace: false,
+      })
+    }
   }
 
   useEffect(() => {
@@ -95,7 +99,7 @@ const RegisterView = () => {
     event.preventDefault();
     var btnID = event.currentTarget.getAttribute('id')?.toString();
     console.log('onClick - processing')
-    
+
     if (btnID === 'registerBtn') {
       if (Validator.isValidSelect(provinceCode)
         && Validator.isValidSelect(districtCode)
@@ -111,19 +115,31 @@ const RegisterView = () => {
           address: `${signup.address},${pName},${dName},${wName}`,
           birthday: DatetimeUtil.getDate(startDate.toString(), DATETIMECONSTANTS.DDMMYYY)
         };
-        var response: boolean = await AuthService.register(signUpInformation);
-        console.log(Object.values(signUpInformation));
-        console.log("response :" + response);
-        if (response === true) {
+        var response: Array<number> | null = await AuthService.register(signUpInformation);
+        if(response === null) response = [];
+        if (response.length === 0) {
           console.log("Create successfully !");
           setStartDate(null);
           setSignup(initialSignUp);
           setProvinceCode(0);
           setDistrictCode(0);
           setWardCode(0);
-          setModal({ ...modal, message : 'Signup Successfully !' ,isOpen: true });
-        } else if (response == false) {
-          setModal({ ...modal, message : 'Signup Failed !' ,isOpen: true });
+          setModal({ ...modal, message: 'Signup Successfully !', isOpen: true });
+          setErros([]);
+        } else if (response && response.length !== 0) {
+          console.log(response)
+          var tmp = '';
+          if (response.includes(1)) {
+            tmp = "Username is used !";
+          }
+          if (response.includes(2)) {
+            tmp += "Phone number is used !";
+          }
+          if (response.includes(3)) {
+            tmp += "Email is used !";
+          }
+          setErros(response);
+          setModal({ ...modal, title: 'Signup Failed !', message: tmp, isOpen: true });
         }
       }
     }
@@ -136,6 +152,7 @@ const RegisterView = () => {
         setSignup({ ...signup, username: event.target.value })
         break;
       case 'register.password':
+        console.log(event.currentTarget.value)
         setSignup({ ...signup, password: event.target.value })
         break;
       case 'register.fullname':
@@ -343,11 +360,11 @@ const RegisterView = () => {
       </Form>
 
       <Modal style={{
-        "display" : "flex",
-        "flexDirection" : "column",
-        "alignItems" :"center",
-        "justifyContent" : "center"
-      }}  show={modal.isOpen}
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "justifyContent": "center"
+      }} show={modal.isOpen}
         onHide={handleModalClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -355,7 +372,11 @@ const RegisterView = () => {
         <Modal.Header closeButton>
           <Modal.Title>Inform</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{modal.message}</Modal.Body>
+        <Modal.Body>
+          {modal.message.split('!').map(single => (
+            <p>{single}</p>
+          ))}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleModalClose}>
             Ok

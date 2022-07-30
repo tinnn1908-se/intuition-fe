@@ -7,11 +7,11 @@ export default class AuthAPI {
 
     static async register(signUpInformation : ISignUp){
         try {
-            var response = await HTTP.post<AxiosResponse>("/api/auth/register",signUpInformation);
-            return response;
+            var response = await HTTP.post("/api/auth/register",signUpInformation);
+            return response.data.errors;
         } catch (error) {
             if(request.isAxiosError(error) && error.response){
-                return error.response;
+                return error.response;   
             }
         }
     }
