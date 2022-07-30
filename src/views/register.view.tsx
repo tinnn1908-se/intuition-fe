@@ -95,7 +95,7 @@ const RegisterView = () => {
     event.preventDefault();
     var btnID = event.currentTarget.getAttribute('id')?.toString();
     console.log('onClick - processing')
-    setModal({ ...modal, isOpen: true });
+    
     if (btnID === 'registerBtn') {
       if (Validator.isValidSelect(provinceCode)
         && Validator.isValidSelect(districtCode)
@@ -121,9 +121,9 @@ const RegisterView = () => {
           setProvinceCode(0);
           setDistrictCode(0);
           setWardCode(0);
-
+          setModal({ ...modal, message : 'Signup Successfully !' ,isOpen: true });
         } else if (response == false) {
-
+          setModal({ ...modal, message : 'Signup Failed !' ,isOpen: true });
         }
       }
     }
@@ -275,7 +275,7 @@ const RegisterView = () => {
           </OverlayTrigger>
         </Form.Group>
         <Form.Group className="mb-3" controlId="register.phone">
-          <Form.Label>Birthday</Form.Label>
+          <Form.Label>Birthday(Optional)</Form.Label>
           {/* <DatePicker id='datePicker' onChange={(date: Date) => setStartDate(date)} selected={startDate} placeholderText="Your Birthday" /> */}
           <DatePicker id='datePicker' onChange={(date: Date) => {
             setSignup({ ...signup, birthday: date.toDateString() })
@@ -342,7 +342,12 @@ const RegisterView = () => {
         <Button id='registerBtn' variant="primary" type="submit" onClick={onClick}>Sign Up</Button>
       </Form>
 
-      <Modal show={modal.isOpen}
+      <Modal style={{
+        "display" : "flex",
+        "flexDirection" : "column",
+        "alignItems" :"center",
+        "justifyContent" : "center"
+      }}  show={modal.isOpen}
         onHide={handleModalClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -350,7 +355,7 @@ const RegisterView = () => {
         <Modal.Header closeButton>
           <Modal.Title>Inform</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Sign Up successfully !</Modal.Body>
+        <Modal.Body>{modal.message}</Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleModalClose}>
             Ok

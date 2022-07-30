@@ -50,7 +50,7 @@ const Header = () => {
         if(id === 'purchasedNav'){
             navigate('/orderhistory')
         }else{
-            navigate('/orderhistory')
+            navigate('/profile')
         }
     }
     useEffect(() => {
