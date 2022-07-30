@@ -9,9 +9,11 @@ export default class AuthService {
 
     static async register(signUpInformation: ISignUp) {
         var response = await AuthAPI.register(signUpInformation);
-        if (response && response.status === 200)
-            return true
-        return false;
+        console.log(response)
+        if (typeof response !== 'undefined') {
+            return response;
+        }
+        return [];
     }
 
     static async authenticate(signInInformation: ISignin) {
@@ -21,8 +23,8 @@ export default class AuthService {
         var accessToken = response.accessToken;
         var refreshToken = response.refreshToken;
 
-        var tokens : ITokens | null = null;
-        if(accessToken && refreshToken){
+        var tokens: ITokens | null = null;
+        if (accessToken && refreshToken) {
             tokens = {
                 accessToken,
                 refreshToken
@@ -34,11 +36,11 @@ export default class AuthService {
 
     static async authorize(tokens: ITokens) {
         var user: IUser = await AuthAPI.getUserByToken(tokens);
-        if(user) return user;
+        if (user) return user;
         return null;
     }
 
-    
+
 
     // static getAccessToken(): string {
     //     var user = localStorage.getItem('user');

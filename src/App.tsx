@@ -8,6 +8,7 @@ import ProductDetailView from './views/product.detail.view';
 import ProductsView from './views/products.view';
 import RegisterView from './views/register.view';
 import OrderDetailView from './views/orderDetail.view';
+import UpdateUserView from './views/updateUser.view';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/checkout' element={<CheckoutView />} ></Route>
         <Route path='/orderhistory' element={<PurchasedListView/>} ></Route>
         <Route path='/orderDetailHistory/:status/:orderNo' element={<OrderDetailView/>} ></Route>
+        <Route path='/profile' element={<UpdateUserView/>} ></Route>
       </Routes>
     </div>
   );
