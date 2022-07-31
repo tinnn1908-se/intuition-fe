@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { ListGroup } from 'react-bootstrap'
 import { ICartItem } from '../models/cart.model';
 import '../styles/cart.style.scss'
-import { removeFromCart, updateQuantity } from '../app/slices/cart.slice';
+import { addToCart, removeFromCart, updateQuantity } from '../app/slices/cart.slice';
 import { AppDispatch } from '../app/store';
 import { Modal, Button } from 'react-bootstrap'
 import { setMyCartHidden } from '../app/slices/canvas.slice';
@@ -19,14 +19,15 @@ const CartItem = (item: ICartItem) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    function onRemoveItem(event : React.MouseEvent) {
+    function onRemoveItem(event: React.MouseEvent) {
         dispatch(removeFromCart(item))
         handleClose();
     }
     function changeQuantity(type: string, item: ICartItem, quantity: number) {
         switch (type) {
             case 'increment':
-                dispatch(updateQuantity({ type, item, quantity }));
+                // dispatch(updateQuantity({ type, item, quantity }));
+                dispatch(addToCart({ ...item, quantity: 1 }));
                 break;
             case 'decrement':
                 if (item.quantity === 1) {
@@ -42,37 +43,36 @@ const CartItem = (item: ICartItem) => {
             default:
                 break;
         }
-
     }
-    function changeQuantityByInput(event: React.ChangeEvent<HTMLInputElement>) {
-        var inputQuantity = 0;
-        console.log(Number(event.currentTarget.value))
-        inputQuantity = Number(event.currentTarget.value);
-        var diff = Number(item.quantity) - inputQuantity;
-        if (diff > 0) {
-            // increment
-            dispatch(updateQuantity({
-                type: 'increment',
-                item: item,
-                quantity: diff
-            }));
-        } else {
-            // decrement
-            dispatch(updateQuantity({
-                type: 'decrement',
-                item: item,
-                quantity: diff
-            }));
-        }
-    }
-    function onNavigateHandler(event:React.MouseEvent<HTMLAnchorElement>) {
+    // function changeQuantityByInput(event: React.ChangeEvent<HTMLInputElement>) {
+    //     var inputQuantity = 0;
+    //     console.log(Number(event.currentTarget.value))
+    //     inputQuantity = Number(event.currentTarget.value);
+    //     var diff = Number(item.quantity) - inputQuantity;
+    //     if (diff > 0) {
+    //         // increment
+    //         dispatch(updateQuantity({
+    //             type: 'increment',
+    //             item: item,
+    //             quantity: diff
+    //         }));
+    //     } else {
+    //         // decrement
+    //         dispatch(updateQuantity({
+    //             type: 'decrement',
+    //             item: item,
+    //             quantity: diff
+    //         }));
+    //     }
+    // }
+    function onNavigateHandler(event: React.MouseEvent<HTMLAnchorElement>) {
         var btnId = event.currentTarget.getAttribute('id');
-        if(btnId === 'btnNavigate'){
+        if (btnId === 'btnNavigate') {
             // window.scrollBy({
             //     top: 50,
             //     behavior: 'smooth',
             // });
-        dispatch(setMyCartHidden());
+            dispatch(setMyCartHidden());
         }
     }
 
@@ -88,7 +88,8 @@ const CartItem = (item: ICartItem) => {
                 <div className='__bottom' >
                     <div className='_qty'>
                         <button onClick={() => changeQuantity('increment', item, 1)} ><KeyboardArrowUpIcon /></button>
-                        <input type="text" name="" id="qtyVal" onChange={changeQuantityByInput} value={`${item.quantity}`} />
+                        {/* <input type="text" name="" id="qtyVal" onChange={changeQuantityByInput} value={`${item.quantity}`} /> */}
+                        <input type="text" name="" id="qtyVal" value={`${item.quantity}`} />
                         <button onClick={() => changeQuantity('decrement', item, 1)}><KeyboardArrowDownIcon /></button>
                     </div>
                     <p className='__size'>{item.size}</p>
