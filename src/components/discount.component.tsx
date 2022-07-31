@@ -10,7 +10,7 @@ const Discount = () => {
                 <h4>ALL UPS FOR GRABS</h4>
                 <h3>Enjoy up to 70% off!</h3>
                 <small>Grab your limited-time discount and enjoy 70& off on all our products</small>
-                <Link to="/login">Shop Now</Link>
+                <Link to="/productview">Shop Now</Link>
             </div>
             <div className='__ad'>
                 <img src="images/discount.png" alt="image" />

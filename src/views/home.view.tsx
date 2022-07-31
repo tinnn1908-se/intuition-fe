@@ -10,15 +10,22 @@ import Products from '../components/products.component';
 import Trend from '../components/trend.component';
 import Discount from '../components/discount.component';
 import Footer from '../components/footer.component';
+import { useSelector } from 'react-redux';
+import { AppDispatch, cartSelector } from '../app/store';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../app/slices/cart.slice';
 
 
 const HomeView = () => {
 
   const [products, setProducts] = useState<Array<IProduct>>([]);
+  const cart = useSelector(cartSelector);
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     async function fetchProducts() {
       var response = await ProductService.getNewestProducts();
+      dispatch(clearCart());
       setProducts(response);
     }
     fetchProducts();
