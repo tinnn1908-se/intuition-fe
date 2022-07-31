@@ -18,9 +18,6 @@ const Products = (params: Props) => {
         navigate('/productview');
     }
 
-
-
-
     return (
         <div className='products'>
             {(params.title !== APPLICATION.PRODUCT_TITLE_PRODUCTS_FILTER) && <h1>{params.title}</h1>}

@@ -48,8 +48,8 @@ const MyCart = () => {
                 <Button id='btnProceed' onClick={onClickHandler} variant="success">PROCEED TO CHECKOUT</Button>
                 {/* <div className='line'></div> */}
                 <ListGroup>
-                    {cart.items.map(item => (
-                        <CartItem key={item.product.no} {...item} />
+                    {cart.items.map((item,index) => (
+                        <CartItem key={index} {...item} />
                     ))}
                 </ListGroup>
             </Offcanvas.Body>

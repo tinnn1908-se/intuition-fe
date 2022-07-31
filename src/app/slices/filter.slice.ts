@@ -26,8 +26,8 @@ export const filterSlice = createSlice({
                         min: Number(prices[0]),
                         max: Number(prices[1])
                     }
-                    console.log('min : ' + state.price.min )
-                    console.log('max : ' + state.price.max )
+                    console.log('min : ' + state.price.min)
+                    console.log('max : ' + state.price.max)
                     break;
                 default:
                     break;
@@ -64,7 +64,10 @@ export const filterSlice = createSlice({
                     break;
             }
         },
+        clearCateFilter: (state) => {
+            state.cates = []
+        }
     }
 })
 
-export const { addFilter, removeFilter } = filterSlice.actions
+export const { addFilter, removeFilter,clearCateFilter } = filterSlice.actions

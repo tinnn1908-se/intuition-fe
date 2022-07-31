@@ -57,24 +57,22 @@ const Footer = () => {
                         Phone Number : (+1) 417-379-6168</p>
                 </div>
                 <div className='footer__container__sectionTwo'>
-                    <p>Công ty</p>
+                    <p>Companies</p>
                     <Link to="/">Home</Link>
-                    <Link to="/about-us">About Us</Link>
-                    <Link to="/service">Products<br />& Services</Link>
-                    <Link to="/team">Teams</Link>
-                    <Link to="#">Opportunities<br />& Career</Link>
+                    <Link to="/#">About Us</Link>
+                    <Link to="/productview">Products</Link>
+                    {/* <Link to="#">Teams</Link> */}
+                    {/* <Link to="#">Opportunities<br />& Career</Link> */}
                 </div>
-                <div className='footer__container__sectionThree'>
-                    <p>Khác</p>
-                    <Link to="/contact">Liên hệ</Link>
+                {/* <div className='footer__container__sectionThree'>
+                    <p>Others</p>
+                    <Link to="#">Contact</Link>
                     <Link to="#">Blog</Link>
-                    <Link to="#">Báo giá</Link>
-                    <Link to="#">Hỗ trợ trực tuyến</Link>
-                </div>
+                </div> */}
                 <div className='footer__container__sectionFour'>
-                    <p>Yêu cầu cuộc gọi <br /> tư vấn</p>
-                    <input id="phoneNumber" type="text" placeholder='SĐT của bạn' />
-                    <button id='btnConsulting' >Nhận tư vấn</button>
+                    <p>Request to <br />be consulted</p>
+                    <input id="phoneNumber" type="text" placeholder='Your phone number !' />
+                    <button id='btnConsulting' >Send</button>
                 </div>
             </div>
             <button className='footer__container__pageUp' id='scrollToTopBtn' onClick={onClickHandler} >

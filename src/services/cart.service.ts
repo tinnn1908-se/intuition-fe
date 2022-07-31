@@ -7,18 +7,20 @@ import { ICreateOrderDetailRequest, ICreateOrderRequest, IOrder } from '../model
 import DatetimeUtil from '../utils/datetime.util';
 export default class CartService {
 
-    static isExistedItem(cart: ICart, cartItem: ICartItem): boolean {
-        var check = false;
+    static isExistedItem(cart: ICart, cartItem: ICartItem): number | null {
+        console.log(cartItem.color)
+        console.log(cartItem.size)
+        console.log(cartItem.product.no)
         for (let index = 0; index < cart.items.length; index++) {
             const element = cart.items[index];
             if (element.color === cartItem.color
                 && element.size === cartItem.size
                 && element.product.no === cartItem.product.no
             ) {
-                check = true;
+                return index;
             }
         }
-        return check;
+        return null;
     }
     static async createOrder(order: IOrder) {
         var createOrderRequest: ICreateOrderRequest = {
@@ -26,7 +28,7 @@ export default class CartService {
             fullname: order.cart.ownerName,
             address: order.address,
             // phoneNumber : order.phoneNumber,
-            phoneNumber : order.phoneNumber,
+            phoneNumber: order.phoneNumber,
             paymentMethod: order.paymentMethod,
             promotionID: null,
             quantity: order.cart.quantity,
@@ -43,14 +45,14 @@ export default class CartService {
                     const cartItem = order.cart.items[index];
                     var createOrderDetailRequest: ICreateOrderDetailRequest = {
                         orderNo: order.id,
-                        productNo : cartItem.product.no,
-                        quantity : cartItem.quantity,
-                        color : cartItem.color,
-                        total : (Number(cartItem.product.price) * cartItem.quantity)
+                        productNo: cartItem.product.no,
+                        quantity: cartItem.quantity,
+                        color: cartItem.color,
+                        total: (Number(cartItem.product.price) * cartItem.quantity)
                     }
-                    console.log('color : ' +  createOrderDetailRequest.color)
+                    console.log('color : ' + createOrderDetailRequest.color)
                     var createOrderDetailResponse = await CartAPI.createOrderDetail(createOrderDetailRequest);
-                    if(typeof createOrderDetailResponse === 'undefined' || createOrderDetailResponse === false)
+                    if (typeof createOrderDetailResponse === 'undefined' || createOrderDetailResponse === false)
                         check = false;
                 }
                 return check;

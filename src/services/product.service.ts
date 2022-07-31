@@ -20,6 +20,7 @@ export default class ProductService {
     }
     static async getProductsByFilterReq(filter: IFilter,pagination : number) {
         var response: Array<IProduct> | undefined | null = await ProductAPI.getProductsByFilterReq(filter,pagination);
+        console.log(response)
         if (response) return response;
         return [];
     }

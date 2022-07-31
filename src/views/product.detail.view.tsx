@@ -178,7 +178,7 @@ const ProductDetailView = () => {
                         <div className='__qty-buttons' >
                             <div className='__qty' >
                                 <p>Qty : </p>
-                                <select name="" id="" onChange={onSelectHandler}>
+                                <select value={selectedQty} name="" id="" onChange={onSelectHandler}>
                                     {/* <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option> */}

@@ -1,3 +1,4 @@
+import { APPLICATION } from "../Constants/application.constant";
 import { IFilter } from "../models/filter.model";
 
 export default class FilterService {
@@ -40,5 +41,14 @@ export default class FilterService {
                 break;
         }
         return isExisted;
+    }
+    static isEmptyFilter(filter: IFilter) {
+        if (filter.cates.length === 0
+            && filter.colors.length === 0
+            && filter.price.min === 0
+            && filter.price.max === Number(APPLICATION.PRODUCT_MAX_PRICE)) {
+            return true
+        }
+        return false;
     }
 }

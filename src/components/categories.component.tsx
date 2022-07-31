@@ -2,7 +2,7 @@ import '../styles/categories.style.scss'
 import Category from './category.component'
 const Categories = () => {
   const data: Array<string> = [
-    "Shirt", "Pant", "Jacket"
+    "T-Shirt", "Pants", "Jacket"
   ]
   return (
     <div className='categories'>
