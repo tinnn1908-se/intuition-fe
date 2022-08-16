@@ -15,7 +15,7 @@ import ProductService from '../services/product.service';
 import { saveProducts } from '../app/slices/products.slice';
 const Filter = () => {
 
-    const categories = ["Jacket", "T-Shirt", "Pant"];
+    const categories = ["Jacket", "T-Shirt", "Pants"];
     const colors = ["Đỏ tươi", "Xanh da trời nhạt", "Xanh dạ quang", "Tím nhạt", "Hống Phấn"]
     const sizes = ["S", "XS", "M", "L", "XL", "XXL"]
     const filter = useSelector(filterSelector);
